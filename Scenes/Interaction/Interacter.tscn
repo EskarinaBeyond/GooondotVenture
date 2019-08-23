@@ -1,0 +1,92 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/Sprites/atWoM_B0T_Logo.png" type="Texture" id=1]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Area2D
+
+onready var game = get_node(\"/root/Game\")
+
+signal activate_interacter()
+signal deactivate_interacter()
+
+var active = false
+var movement = Vector2(0, 0)
+var player = null
+var descriptor_box = null
+export(int) var speed = 2
+export(int) var interacter_range = 30
+
+func get_activation_input():
+	
+	if Input.is_action_just_pressed(\"interacter\"):
+		
+		if active == false:
+			
+			emit_signal(\"activate_interacter\")
+			active = true
+			show()
+			
+		else:
+			
+			emit_signal(\"deactivate_interacter\")
+			active = false
+			hide()
+
+
+
+func check_for_interactable():
+	
+	if Input.is_action_just_pressed(\"jump\"):
+		
+		for area in get_overlapping_areas():
+			
+			if area.name == \"Interactable\":
+				
+				descriptor_box.start_interaction(area.descriptions, area.get_parent().name)
+
+
+func get_input():
+	
+	movement = Vector2(0, 0)
+	
+	if Input.is_action_pressed(\"left\") and position.x > player.position.x - interacter_range:
+		movement.x = -speed
+	
+	if Input.is_action_pressed(\"right\") and position.x < player.position.x + interacter_range:
+		movement.x = speed
+	
+	if Input.is_action_pressed(\"up\") and position.y > player.position.y - interacter_range:
+		movement.y = -speed
+	
+	if Input.is_action_pressed(\"down\") and position.y < player.position.y + interacter_range:
+		movement.y = speed
+
+
+func _ready():
+	
+	hide()
+
+
+func _process(delta):
+	
+	get_activation_input()
+	
+	if active == true:
+		
+		get_input()
+		check_for_interactable()
+		position += movement"
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 4.0
+
+[node name="Interacter" type="Area2D"]
+script = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.005, 0.005 )
+texture = ExtResource( 1 )

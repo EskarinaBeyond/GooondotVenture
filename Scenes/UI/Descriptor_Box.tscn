@@ -1,0 +1,122 @@
+[gd_scene load_steps=4 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Panel
+
+onready var name_label = $Name_Label
+onready var description_label = $Description_Label
+
+var current_descriptions
+var current_name
+var currently_interacting = false
+var description_counter = 0
+
+
+func start_interaction(descriptions, name):
+	
+	if currently_interacting == false:
+		
+		currently_interacting = true
+		
+		current_descriptions = descriptions
+		current_name = name
+		
+		name_label.text = name
+		
+		$AnimationPlayer.play(\"open_descriptor\")
+
+
+func end_interaction():
+	
+	$AnimationPlayer.play(\"close_descriptor\")
+	currently_interacting = false
+	description_counter = 0
+	current_descriptions = null
+	current_name = null
+
+
+func _ready():
+	pass
+
+
+func _process(delta):
+	
+	if currently_interacting == true:
+		
+		if Input.is_action_just_pressed(\"jump\"):
+			if description_counter < current_descriptions.size():
+				
+				description_counter += 1
+				description_label.text = current_descriptions[description_counter - 1]
+			
+			else:
+				
+				end_interaction()
+	
+		if Input.is_action_just_pressed(\"ui_cancel\"):
+			
+			end_interaction()
+
+
+
+
+
+
+
+
+"
+
+[sub_resource type="Animation" id=2]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="Desciptor_Box" type="Panel"]
+margin_right = 192.0
+margin_bottom = 50.0
+script = SubResource( 1 )
+
+[node name="Name_Label" type="RichTextLabel" parent="."]
+anchor_right = 0.37
+margin_left = 6.0
+margin_top = 0.225933
+margin_right = 114.96
+margin_bottom = 20.2259
+scroll_active = false
+
+[node name="Description_Label" type="RichTextLabel" parent="."]
+anchor_right = 0.37
+margin_left = 6.0
+margin_top = 20.2259
+margin_right = 114.96
+margin_bottom = 50.2259
+scroll_active = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/close_descriptor = SubResource( 2 )
+anims/open_descriptor = SubResource( 3 )

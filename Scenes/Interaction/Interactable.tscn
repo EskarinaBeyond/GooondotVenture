@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Area2D
+
+export (Array) var descriptions
+
+func _ready():
+	pass
+"
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 2, 2 )
+
+[node name="Interactable" type="Area2D"]
+script = SubResource( 1 )
+descriptions = [ "A strange statue." ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
