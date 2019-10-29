@@ -161,7 +161,6 @@ rest = Transform2D( 0.932493, 0.361187, -0.361187, 0.932493, 119.335, 8.37686 )
 default_length = 259.0
 
 [node name="arm_left_1" type="Bone2D" parent="Skeleton2D/hip/lower_torso/upper_torso"]
-editor/display_folded = true
 position = Vector2( 150.667, -86.6449 )
 rotation = -1.2993
 scale = Vector2( 0.999999, 0.999999 )
@@ -169,33 +168,32 @@ rest = Transform2D( 0.268173, -0.96337, 0.96337, 0.268173, 150.667, -86.6449 )
 default_length = 274.0
 
 [node name="arm_left_2" type="Bone2D" parent="Skeleton2D/hip/lower_torso/upper_torso/arm_left_1"]
-position = Vector2( 313.798, -1.52661 )
+position = Vector2( 320.656, -9.00543 )
+rotation = 1.23124
 rest = Transform2D( 1, 0, 0, 1, 313.798, -1.52661 )
 default_length = 325.0
 
 [node name="arm_right_1" type="Bone2D" parent="Skeleton2D/hip/lower_torso/upper_torso"]
-editor/display_folded = true
 position = Vector2( 138.075, 130.604 )
-rotation = -1.29567
+rotation = -1.26212
 rest = Transform2D( 0.271668, -0.962391, 0.962391, 0.271668, 138.075, 130.604 )
 default_length = 274.0
 
 [node name="arm_right_2" type="Bone2D" parent="Skeleton2D/hip/lower_torso/upper_torso/arm_right_1"]
 position = Vector2( -396.128, 43.7695 )
-rotation = 3.02257
+rotation = 1.29843
 rest = Transform2D( -0.992925, 0.118742, -0.118742, -0.992925, -396.128, 43.7695 )
 default_length = 325.0
 
 [node name="vest_right_1" type="Bone2D" parent="Skeleton2D/hip/lower_torso/upper_torso"]
 position = Vector2( 221.136, 75.364 )
-rotation = 0.102254
+rotation = 0.0991008
 rest = Transform2D( 0.994777, 0.102076, -0.102076, 0.994777, 221.136, 75.364 )
 default_length = 274.0
 
 [node name="arm_right_2" type="Bone2D" parent="Skeleton2D/hip/lower_torso/upper_torso/vest_right_1"]
 position = Vector2( -272.729, 41.1617 )
 rotation = -3.04596
-scale = Vector2( 1, 1 )
 rest = Transform2D( -0.99543, -0.0954895, 0.0954895, -0.99543, -272.729, 41.1617 )
 default_length = 325.0
 
@@ -214,7 +212,6 @@ default_length = 325.0
 [node name="leg_right_1" type="Bone2D" parent="Skeleton2D/hip"]
 position = Vector2( 48.9528, 13.1722 )
 rotation = 1.88858
-scale = Vector2( 1, 1 )
 rest = Transform2D( -0.312462, 0.94993, -0.94993, -0.312462, 48.9528, 13.1722 )
 
 [node name="leg_right_2" type="Bone2D" parent="Skeleton2D/hip/leg_right_1"]
@@ -230,13 +227,12 @@ default_length = 205.0
 
 [node name="leg_left_1" type="Bone2D" parent="Skeleton2D/hip"]
 position = Vector2( -43.1021, 9.56232 )
-rotation = 1.88858
-scale = Vector2( 1, 1 )
+rotation = 1.96925
 rest = Transform2D( -0.312462, 0.94993, -0.94993, -0.312462, -43.1021, 9.56232 )
 
 [node name="leg_left_2" type="Bone2D" parent="Skeleton2D/hip/leg_left_1"]
 position = Vector2( 310.447, -14.0475 )
-rotation = 0.104103
+rotation = -0.123989
 rest = Transform2D( 0.994586, 0.103915, -0.103915, 0.994586, 310.447, -14.0475 )
 
 [node name="leg_left_3" type="Bone2D" parent="Skeleton2D/hip/leg_left_1/leg_left_2"]
