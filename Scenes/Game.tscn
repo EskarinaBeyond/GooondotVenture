@@ -92,6 +92,8 @@ func _ready():
 	
 	interacter.player = player
 	interacter.descriptor_box = descriptor_box
+	
+	player.position = level.find_node(\"Door1\").position
 
 
 func _process(delta):
@@ -101,7 +103,7 @@ func _process(delta):
 
 "
 
-[sub_resource type="Shader" id=3]
+[sub_resource type="Shader" id=2]
 code = "shader_type canvas_item;
 
 uniform vec3 gray_ratio = vec3(0.21, 0.72, 0.07);
@@ -112,11 +114,11 @@ void fragment(){
 	COLOR.rgb = vec3(color.r + color.g + color.b);
 }"
 
-[sub_resource type="ShaderMaterial" id=4]
-shader = SubResource( 3 )
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 2 )
 shader_param/gray_ratio = Vector3( 0.21, 0.72, 0.07 )
 
-[sub_resource type="StreamTexture" id=2]
+[sub_resource type="StreamTexture" id=4]
 load_path = "res://.import/white_rectangle.png-c28916d03d87b3a5b93f3bfd83381395.stex"
 
 [node name="Game" type="Node2D"]
@@ -136,12 +138,13 @@ editor_draw_drag_margin = true
 [node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
 
 [node name="TextureRect" type="TextureRect" parent="Camera2D/CanvasLayer"]
-material = SubResource( 4 )
+visible = false
+material = SubResource( 3 )
 margin_left = -20.0
 margin_top = -50.0
 margin_right = 206.0
 margin_bottom = 122.0
-texture = SubResource( 2 )
+texture = SubResource( 4 )
 expand = true
 stretch_mode = 1
 
@@ -153,7 +156,7 @@ margin_right = 192.0
 margin_bottom = 108.0
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 242.726, 332.958 )
+position = Vector2( 0, 0 )
 
 [node name="Interacter" parent="." instance=ExtResource( 3 )]
 position = Vector2( 14.4124, 23.7411 )
@@ -163,4 +166,3 @@ margin_right = 40.0
 margin_bottom = 40.0
 
 [node name="Descriptor_Box" parent="UI" instance=ExtResource( 4 )]
-modulate = Color( 1, 1, 1, 0 )

@@ -97,6 +97,7 @@ tracks/0/keys = {
 }
 
 [node name="Desciptor_Box" type="Panel"]
+modulate = Color( 1, 1, 1, 0 )
 margin_right = 192.0
 margin_bottom = 50.0
 script = SubResource( 1 )
